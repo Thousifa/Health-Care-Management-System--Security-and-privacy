@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <h1>Welcome to the Dashboard</h1>
+
+    <h2>Allowed Attributes</h2>
+    <ul>
+        {% for attribute in allowed_attributes.split(', ') %}
+        <li>{{ attribute }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Data</h2>
+    <table border="1">
+        <tr>
+            {% for attribute in allowed_attributes.split(', ') %}
+                <th>{{ attribute }}</th>
+            {% endfor %}
+        </tr>
+        {% for record in data %}
+            <tr>
+                {% for value in record %}
+                    {% if attribute == 'gender' %}
+                        <td>{{ 'Male' if value == 1 else 'Female' }}</td>
+                    {% else %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+
+</html>
